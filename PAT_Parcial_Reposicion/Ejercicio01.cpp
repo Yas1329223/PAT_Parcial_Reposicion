@@ -2,9 +2,7 @@
 
 Node<int>* Ejercicio01::addTwoNumbers(Node<int>* l1, int sizeL1, Node<int>* l2, int sizeL2)
 {
-     Node<int>* result = nullptr; // Inicializamos la lista resultante como vacía
-    Node<int>* current = nullptr; // Inicializamos el nodo actual como vacío
-    int carry = 0; // Inicializamos el acarreo como cero
+    int carry = 0; 
 
     while (l1 != nullptr || l2 != nullptr) {
         int val1 = (l1 != nullptr) ? l1->data : 0;
