@@ -1,4 +1,5 @@
 #include "Ejercicio02.h"
+#include "Node.h"
 
 Node<char>* Ejercicio02::reverseKGroup(Node<char>* head, int k)
 {
