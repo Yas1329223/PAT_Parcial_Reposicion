@@ -2,10 +2,6 @@
 
 Node<char>* Ejercicio02::reverseKGroup(Node<char>* head, int k)
 {
-    #include "Ejercicio02.h"
-
-Node<char>* Ejercicio02::reverseKGroup(Node<char>* head, int k)
-{
     Node<char>* current = head;
     int count = 0;
 
