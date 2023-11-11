@@ -2,34 +2,29 @@
 
 Node<int>* Ejercicio01::addTwoNumbers(Node<int>* l1, int sizeL1, Node<int>* l2, int sizeL2)
 {
-    Node<int>* result = nullptr;
-    Node<int>* current = nullptr;
-    int carry = 0; 
+    Node<int>* resultHead = nullptr;
+    Node<int>** current = &resultHead;
+    int carry = 0;
 
     while (l1 != nullptr || l2 != nullptr) {
-        int val1 = (l1 != nullptr) ? l1->data : 0;
-        int val2 = (l2 != nullptr) ? l2->data : 0;
-        int sum = val1 + val2 + carry;
-
-        carry = sum / 10;
-
-        Node<int>* newNode = new Node<int>(sum % 10);
-        if (result == nullptr) {
-            result = newNode;
-            current = result;
-        } else {
-            current->next = newNode;
-            current = current->next;
+        int sum = carry;
+        if (l1 != nullptr) {
+            sum += l1->value;
+            l1 = l1->next;
+        }
+        if (l2 != nullptr) {
+            sum += l2->value;
+            l2 = l2->next;
         }
 
-        if (l1 != nullptr) l1 = l1->next;
-        if (l2 != nullptr) l2 = l2->next;
+        carry = sum / 10;
+        *current = new Node<int>(sum % 10);
+        current = &((*current)->next);
     }
 
     if (carry > 0) {
-        Node<int>* newNode = new Node<int>(carry);
-        current->next = newNode;
+        *current = new Node<int>(carry);
     }
 
-    return result;
+    return resultHead;
 }
