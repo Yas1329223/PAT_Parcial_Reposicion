@@ -5,29 +5,30 @@ Node<char>* Ejercicio02::reverseKGroup(Node<char>* head, int k)
     Node<char>* current = head;
     int count = 0;
 
-    while (current && count < k) {
+    while (current != nullptr && count < k) {
         current = current->next;
         count++;
     }
 
-    if (count < k) {
-        return head; 
+    if (count == k) {
+        current = reverseKNodes(head, k);
+        head->next = reverseKGroup(current, k);
+        return current;
     }
-    Node<char>* prev = nullptr;
-    current = head;
-    int i = 0;
+    return head;
+}
 
-    while (current && i < k) {
-        Node<char>* next = current->next;
+Node<char>* Ejercicio02::reverseKNodes(Node<char>* head, int k) {
+    Node<char>* prev = nullptr;
+    Node<char>* current = head;
+    Node<char>* next = nullptr;
+
+    while (k > 0) {
+        next = current->next;
         current->next = prev;
         prev = current;
         current = next;
-        i++;
+        k--;
     }
-
-    if (current) {
-        head->next = reverseKGroup(current, k);
-    }
-
     return prev;
 }
