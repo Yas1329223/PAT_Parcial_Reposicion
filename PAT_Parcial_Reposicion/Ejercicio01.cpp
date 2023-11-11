@@ -1,7 +1,10 @@
 #include "Ejercicio01.h"
+#include "Node.h"
 
 Node<int>* Ejercicio01::addTwoNumbers(Node<int>* l1, int sizeL1, Node<int>* l2, int sizeL2)
 {
+    Node<int>* result = nullptr;
+    Node<int>* current = nullptr;
     int carry = 0; 
 
     while (l1 != nullptr || l2 != nullptr) {
