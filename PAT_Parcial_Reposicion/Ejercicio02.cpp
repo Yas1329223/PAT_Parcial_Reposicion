@@ -2,35 +2,48 @@
 
 Node<char>* Ejercicio02::reverseKGroup(Node<char>* head, int k)
 {
-    Node<char>* current = head;
+    if (!head || k <= 1)
+         return head;
+
+    Node<char>* dummy = new Node<char>;
+    dummy->next = head;
+    
+    Node<char>* prevprev = dummy;
+    Node<char>* prev;
+    Node<char>* temp;
+    
+    Node<char>* slow = head;
+    Node<char>* fast = head;
     int count = 0;
-
-    while (current != nullptr && count < k) {
-        current = current->next;
-        count++;
-    }
-
-    if (count == k) {
-        current = reverseKNodes(head, k);
-        head->next = reverseKGroup(current, k);
-        return current;
-    }
-    return head;
-}
-
-Node<char>* Ejercicio02::reverseKGroup(Node<char>* head, int k)
-{
-    Node<char>* prev = nullptr;
-    Node<char>* current = head;
-    Node<char>* next = nullptr;
-
-    while (k > 0) 
+    
+    while (fast && fast->next)
     {
-        next = current->next;
-        current->next = prev;
-        prev = current;
-        current = next;
-        k--;
+        count += 2;
+        slow = slow->next;
+        fast = fast->next->next;
     }
-    return prev;
+    
+    if (fast != nullptr) 
+        count++;
+    
+    while (count >= k) 
+    {
+        prev = prevprev->next;
+        temp = prev->next;
+    
+        for (int i = 1; i < k; i++) 
+        {
+            prev->next = temp->next;
+            temp->next = prevprev->next;
+            prevprev->next = temp;
+            temp = prev->next;
+        }
+        prevprev = prev;
+        count -= k;
+    }
+    
+    Node<char>* result = dummy->next;
+    delete dummy;
+
+    return result;
 }
