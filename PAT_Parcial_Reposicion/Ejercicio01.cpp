@@ -17,7 +17,7 @@ Node<int>* reverseList(Node<int>* head)
     return prev;
 }
 
-Node<int>* addTwoNumbers(Node<int>* l1, int sizeL1, Node<int>* l2, int sizeL2)
+Node<int>* Ejercicio01::addTwoNumbers(Node<int>* l1, int sizeL1, Node<int>* l2, int sizeL2)
 {
     Node<int>* l1Reversed = reverseList(l1);
     Node<int>* l2Reversed = reverseList(l2);
